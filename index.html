@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PavanJadhav</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./javascript/main.js"></script>
+    <link rel="icon" href="./images/pavan.jpg" />
+    <!--================ Bootstrap Cdn Link ============== -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body onload="BodyLoad()" style="background-color: #e6e2dd">
+    <!--=============== Bootstrap Js File =================== -->
+    <header id="header">
+      <div class="navbar fixed-top navbar-light navbar-expand-lg">
+        <div class="container">
+          <!--======= Nanbar Brand ======= -->
+          <a href="#" class="navbar-brand" style="height: 50%">
+            <img src="./images/travel1.jpg" class="rounded rounded-pill me-5" />
+          </a>
+          <!--======= Navbar-toggler-icon ======= -->
+          <button class="navbar-toggler bg-light">
+            <span
+              class="navbar-toggler-icon"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbar-items"
+            ></span>
+          </button>
+          <!--=============== Navbar-item =========== -->
+          <div
+            class="navbar-collapse collapse justify-content-end"
+            id="navbar-items"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item ms-5 text-center">
+                <a href="#home" class="nav-link active text-white">Home</a>
+              </li>
+              <li class="nav-item ms-5 text-center">
+                <a href="#destination" class="nav-link">Destination</a>
+              </li>
+              <li class="nav-item ms-5 text-center">
+                <a href="#gallery" class="nav-link">Gallery</a>
+              </li>
+              <li class="nav-item ms-5 text-center">
+                <a href="#review" class="nav-link">review</a>
+              </li>
+              <li class="nav-item ms-5 text-center">
+                <a href="#contact" class="nav-link">Contact</a>
+              </li>
+              <li class="nav-item ms-4 text-center">
+                <button
+                  class="btn btn-warning rounded rounded-pill pe-4 ps-4"
+                  id="bookbtn"
+                  onmouseover="bookbtnmouseover()"
+                  onmouseout="bookbtnmouseout()"
+                >
+                  BOOK
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!---=============================== SECTION PART ================= -->
+    <section class="container" style="background-color: #f5f5f5">
+      <div id="home" style="padding: 10%">
+        <div class="row d-flex justify-content-between mt-5">
+          <div class="col-lg-2 col-md-5 mb-5 mt-3">
+            <label class="form-label"><b>From</b></label>
+            <select
+              id="fromplaces"
+              class="form-select"
+              onchange="SelectFrom()"
+            ></select>
+          </div>
+          <div class="col-lg-2 col-md-5 mb-5 mt-3">
+            <label class="form-label"><b>To</b></label>
+            <select
+              id="toplaces"
+              class="form-select"
+              onchange="SelectTo()"
+            ></select>
+          </div>
+          <div class="col-lg-2 col-md-5 mb-5 mt-3">
+            <label class="form-label"><b>Select Place</b></label>
+            <select id="places" class="form-select"></select>
+          </div>
+          <div class="col-lg-2 col-md-5 mb-5 mt-3">
+            <label class="form-label"><b>Select Seat</b></label>
+            <select id="seates" class="form-select"></select>
+          </div>
+          <div class="col-lg-2 col-md-12 mb-5 mt-5">
+            <button
+              class="btn btn-success w-100"
+              data-bs-target="#box-modal"
+              data-bs-toggle="modal"
+              onclick="BookClick()"
+            >
+              BOOK
+            </button>
+          </div>
+          <!--====== Ticket print on page ==== -->
+          <div id="ticketprint" style="display: none">
+            <dl
+              class="row justify-content-between bg-white p-3 rounded rounded-3"
+            >
+              <div class="col-sm-2">
+                <dt>From</dt>
+                <dd id="lblfrom2"></dd>
+              </div>
+              <div class="col-sm-2">
+                <dt>To</dt>
+                <dd id="lblto2"></dd>
+              </div>
+              <div class="col-sm-2">
+                <dt>Place</dt>
+                <dd id="lblplace2"></dd>
+              </div>
+              <div class="col-sm-2">
+                <dt>Seats</dt>
+                <dd id="lblseats2"></dd>
+              </div>
+              <div class="col-sm-2">
+                <font
+                  id="ticketicon"
+                  size="5"
+                  data-bs-target="#check-modal"
+                  data-bs-toggle="modal"
+                ></font>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <font
+                  id="ticketicon2"
+                  color="red"
+                  size="5"
+                  onclick="trashiconclick()"
+                ></font>
+                <div><b>Click Here</b></div>
+              </div>
+            </dl>
+          </div>
+        </div>
+        <!--============== ticketicon-modal=============-->
+        <div class="modal" id="check-modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="d-flex justify-content-center">
+                  <font
+                    class="bi bi-check text-center text-success"
+                    size="20"
+                  ></font>
+                </div>
+                <h4 class="text-center">Your Ticket is Booked</h4>
+                <h1 class="text-center">Thank You</h1>
+              </div>
+              <div
+                class="modal-footer d-flex justify-content-center"
+                data-bs-dismiss="modal"
+              >
+                <button class="btn btn-danger rounded rounded-circle">
+                  <span class="bi bi-x"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--==================================== Modal Box of Book ==================================== -->
+        <div class="modal" id="box-modal">
+          <div
+            class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
+          >
+            <div class="modal-content">
+              <!--====== Modal Header ====== -->
+              <div class="modal-header bg-dark text-light">
+                <h3>
+                  <span class="bi bi-ticket-detailed"></span>Traveling Ticket
+                </h3>
+                <button
+                  class="btn-close btn btn-danger"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+              <!--======= Modal Body ======= -->
+              <div class="modal-body">
+                <dl class="row">
+                  <dt>From</dt>
+                  <dd id="lblfrom"></dd>
+                  <dt>To</dt>
+                  <dd id="lblto"></dd>
+                  <dt>Place</dt>
+                  <dd id="lblplace"></dd>
+                  <dt>Seats</dt>
+                  <dd id="lblseats"></dd>
+                </dl>
+              </div>
+              <!--========== Modal Footer ======= -->
+              <div class="modal-footer bg-dark text-light">
+                <button
+                  class="btn btn-success"
+                  data-bs-dismiss="modal"
+                  onclick="SubmitClick()"
+                >
+                  Submit
+                </button>
+                <button class="btn btn-danger" data-bs-dismiss="modal">
+                  Cancle
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--======================== Destination ================= -->
+    <section class="container" id="destination">
+      <h1 style="text-align: center; padding-top: 10%; padding-bottom: 2%">
+        <span class="bi bi-globe-americas"></span>&nbsp;DESTINATION
+      </h1>
+      <!--================== Destination Cards ================ -->
+      <div class="row d-flex justify-content-around">
+        <!--====== 1> tirupati ===== -->
+        <div class="col-lg-4 col-md-6 mb-3">
+          <div class="card h-100 p-2" style="border: none">
+            <img
+              src="./images/taj-mahal.jpg"
+              alt="mysore"
+              class="card-img-top pb-2"
+              height="300px"
+            />
+            <div class="card-header" style="border: none">
+              <h3 class="card-title text-center">Taj Mahal</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-text" style="text-align: justify">
+                The Taj Mahal is an ivory-white marble mausoleum on the right
+                bank of the river Yamuna in Agra, Uttar Pradesh, India. It was
+                commissioned in 1631 by the fifth Mughal emperor, Shah Jahan
+                (1628-1658) to house the tomb of his beloved wife, Mumtaz Mahal;
+                it also houses the tomb of Shah Jahan himself.
+              </p>
+              <font size="3">
+                <span class="bi bi-geo-alt-fill text-success"></span>Uttar
+                Pradesh
+              </font>
+            </div>
+            <div class="card-footer mt-2" style="border: none">
+              <button class="btn btn-outline-warning w-100">Book</button>
+            </div>
+          </div>
+        </div>
+        <!--==================2) Kerala ===================== -->
+        <div class="col-lg-4 col-md-6 mb-3">
+          <div class="card h-100 p-2" style="border: none">
+            <img
+              src="./images/kerala-image.jpg"
+              alt="mysore"
+              class="card-img-top pb-2"
+              height="300px"
+            />
+            <div class="card-header" style="border: none">
+              <h3 class="card-title text-center">Kerala</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-text" style="text-align: justify">
+                An example is the Kappad beach in Calicut. It was on this
+                legendary beach that the Portuguese explorer Vasco da Gama first
+                set foot on Indian soil in 1498 and changed the history of
+                Kerala forever. Vasco da Gama's historic journey opened the sea
+                route to other European nations and the vast wealth of the
+                Malabar region.
+              </p>
+              <font size="3">
+                <span class="bi bi-geo-alt-fill text-dark"></span>Kerala
+              </font>
+            </div>
+            <div class="card-footer mt-2" style="border: none">
+              <button class="btn btn-outline-success w-100">Book</button>
+            </div>
+          </div>
+        </div>
+        <!--================= 3)Punjab=================== -->
+        <div class="col-lg-4 col-md-6 mb-3">
+          <div class="card h-100 p-2" style="border: none">
+            <img
+              src="./images/goldentemple-image.jpg"
+              alt="mysore"
+              class="card-img-top pb-2"
+              height="300px"
+            />
+            <div class="card-header" style="border: none">
+              <h3 class="card-title text-center">Sri Harmandir Sahib</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-text" style="text-align: justify">
+                The Golden temple is famous for its full golden dome, it is one
+                of the most sacred pilgrim spots for Sikhs. The Mandir is built
+                on a 67-ft square of marble and is a two storied structure.
+              </p>
+              <font size="3">
+                <span class="bi bi-geo-alt-fill text-warning"></span>Punjab
+              </font>
+            </div>
+            <div class="card-footer mt-2" style="border: none">
+              <button class="btn btn-outline-danger w-100">Book</button>
+            </div>
+          </div>
+        </div>
+        <!--====== 4) Mysore===== -->
+        <div class="col-lg-5 col-md-6 mb-3">
+          <div class="card h-100 p-2" style="border: none">
+            <img
+              src="./images/mysore-image.jpg"
+              alt="mysore"
+              class="card-img-top pb-2"
+              height="300px"
+            />
+            <div class="card-header" style="border: none">
+              <h3 class="card-title text-center">Mysore Palace</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-text" style="text-align: justify">
+                Mysore Palace, also known as Amba Vilas Palace, is a historical
+                palace and a royal residence (house). It is located in Mysore,
+                Karnataka, India. It used to be the official residence of the
+                Wadiyar dynasty and the seat of the Kingdom of Mysore.
+              </p>
+              <font size="3">
+                <span class="bi bi-geo-alt-fill text-danger"></span>Karnataka
+              </font>
+            </div>
+            <div class="card-footer mt-2" style="border: none">
+              <button class="btn btn-outline-info w-100">Book</button>
+            </div>
+          </div>
+        </div>
+        <!--=============== 5)Goa============= -->
+        <div class="col-lg-5 col-md-10 mb-3">
+          <div class="card h-100 p-2" style="border: none">
+            <img
+              src="./images/goa-image.jpg"
+              alt="mysore"
+              class="card-img-top pb-2"
+              height="300px"
+            />
+            <div class="card-header" style="border: none">
+              <h3 class="card-title">Baga Beach</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-text" style="text-align: justify">
+                Discovered by the Hippies, Baga became an important stopover on
+                the Hippie trail during the sixties and seventies. Years after
+                Hippies popularized it; Baga continues to retain the ethos and
+                characteristics of the movement minus the decadence associated
+                with it.
+              </p>
+              <font size="3">
+                <span class="bi bi-geo-alt-fill text-warning"></span> Goa
+              </font>
+            </div>
+            <div class="card-footer mt-2" style="border: none">
+              <button class="btn btn-outline-secondary w-100">Book</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================================ End Destination ============ -->
+    <!--================== Traweling Gallery =================== -->
+    <section id="gallery" class="container">
+      <h1 style="text-align: center; padding-top: 10%; padding-bottom: 2%">
+        <span class="bi bi-suitcase"></span>&nbsp;Travelling Gallery
+      </h1>
+      <!--Start -->
+      <div class="row justify-content-around p-5">
+        <div class="col-lg-4 p-3" id="hoverboxes">
+          <div>
+            <img src="./images/pune.jpg" width="100%" height="300" />
+          </div>
+          <h3>Pune</h3>
+        </div>
+        <div class="col-lg-4 p-3" id="hoverboxes">
+          <div>
+            <img src="./images/delhi.jpg" width="100%" height="300" />
+          </div>
+          <h3>Delhi</h3>
+        </div>
+        <div class="col-lg-4 p-3" id="hoverboxes">
+          <div>
+            <img src="./images/mumbai.jpg" width="100%" height="300" />
+          </div>
+          <h3>Mumbai</h3>
+        </div>
+      </div>
+      <!--End-->
+    </section>
+    <!--=========================== Traveling gallery end  ================= -->
+    <!---==================== offer Banner ================ -->
+    <section class="container" id="banner2">
+      <div class="banner-heighlight">
+        <div class="row p-5">
+          <div class="col-lg-8">
+            <h1>Get 30% off on top destination</h1>
+            <p>Book Your Tickets before 30 november</p>
+          </div>
+          <div class="col-lg-4">
+            <button class="btn btn-outline-light rounded rounded-pill">
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=========================== offer baner end ================= -->
+    <!--=========== Review Mode ================= -->
+    <section class="container">
+      <div id="review" style="padding-bottom: 5%">
+        <h1 style="text-align: center; padding-top: 10%; padding-bottom: 3%">
+          User Review
+        </h1>
+        <div class="row justify-content-around p-5">
+          <div class="col-lg-3 text-center mt-5 mb-5" id="reviewcard">
+            <div class="user-review">
+              <p>
+                The Golden temple is famous for its full golden dome, it is one
+                of the most sacred pilgrim spots for Sikhs. The Mandir is built
+                on a 67-ft square of marble and is a two storied structure.
+              </p>
+
+              <font size="3" style="padding-bottom: 10%"
+                ><b>Pavan Jadhav</b></font
+              ><img src="./images/pavan1.jpg" alt="pavan image" />
+            </div>
+          </div>
+          <div class="col-lg-3 text-center mt-5" id="reviewcard">
+            <div class="user-review">
+              <p>
+                The city is clean, free from moaquitoes unlike Chennai. The
+                weather is neither too cold nor too hot and very pleasant.
+              </p>
+
+              <font size="3" style="padding-bottom: 10%"
+                ><b>Pavan Jadhav</b></font
+              ><img src="./images/pavan.jpg"" alt="pavan image" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--======================= Footer =======================-->
+    <footer class="bg-dark text-center text-white" id="contact">
+      <div class="container p-4 pb-0">
+        <!-- Social media icons -->
+        <section class="mb-4" id="contact-icons">
+          <!-- Facebook -->
+          <a
+            class="btn btn-outline-light btn-floating m-1 rounded rounded-circle"
+            href="https://www.facebook.com/pavan.jadhav.5249349"
+            role="button"
+            target="_blank"
+            ><i class="bi bi-facebook"></i
+          ></a>
+
+          <!-- Linkedin-->
+          <a
+            class="btn btn-outline-light btn-floating m-1 rounded rounded-circle"
+            href="https://www.linkedin.com/in/pavan-jadhav-67baa1284/"
+            role="button"
+            target="_blank"
+            ><i class="bi bi-linkedin"></i
+          ></a>
+
+          <!-- instagram icon -->
+          <a
+            class="btn btn-outline-light btn-floating m-1 rounded rounded-circle"
+            href="https://www.instagram.com/pavanjadhav_1408/"
+            role="button"
+            target="_blank"
+            ><i class="bi bi-instagram"></i
+          ></a>
+
+          <!-- twitter icon-->
+          <a
+            class="btn btn-outline-light btn-floating m-1 rounded rounded-circle"
+            href="https://twitter.com/pavanjadha74028"
+            role="button"
+            target="_blank"
+            ><i class="bi bi-twitter"></i
+          ></a>
+        </section>
+      </div>
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        <p class="text-white text-center">© 2023 Created By Pavan Jadhav</p>
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <a href="mailto:jadhavpavan1408@gmail.com" id="mail"
+              >jadhavpavan1408@gmail.com</a
+            >
+          </div>
+          <div class="col-12">
+            Mobile No :
+            <a href="dailto : +917218742423">+917218742423</a>
+          </div>
+        </div>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
