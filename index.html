@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>userlogin</title>
+    <title>Document</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -18,17 +18,7 @@
       * {
         margin: 0px;
         padding: 0px;
-        background-color: #f2f2f2;
-      }
-      section {
-        height: 100vh;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .main-container {
-        width: 250px;
+        font-family: sans-serif;
       }
     </style>
     <script>
@@ -48,7 +38,7 @@
         } else {
           document.querySelector(
             "#numbererror"
-          ).innerHTML = `Please enter : ${data.email} or ${data.number}`;
+          ).innerHTML = `enter : ${data.email} or ${data.number}`;
         }
       }
       function VerifyPassword() {
@@ -56,52 +46,59 @@
         if ((data.password = password1)) {
           document.querySelector("#password-container").style.display = "none";
           alert("login Successfully");
-          document.write("Login Success");
+          document.write(
+            "Login Success".fontcolor("green").fontsize("10").bold()
+          );
         } else {
           document.querySelector(
             "#passworderror"
-          ).innerHTML = `Please Enter: pavan@2024`;
+          ).innerHTML = `enter: pavan@2024`;
           document.querySelector("#password-container").style.display = "block";
         }
       }
     </script>
   </head>
   <body>
-    <section>
-      <div class="main-container">
-        <!--number container-->
-        <div id="number-container" style="display: block">
-          <h3>Sign In</h3>
-          <label class="form-label">
-            <b>Enter Email or Mobile Number</b>
-          </label>
-          <div>
-            <input class="form-control" type="text" id="number" />
-            <br />
-            <span id="numbererror" class="text-danger"></span>
-            <button class="btn btn-warning mt-3 w-100" onclick="VerifyNumber()">
-              Continue
-            </button>
-          </div>
-        </div>
-        <!--Password container-->
-        <div id="password-container" style="display: none">
-          <h3>Sign In</h3>
-          <label class="form-label">
-            <b>Enter Password</b>
-          </label>
-          <div>
-            <input class="form-control" type="text" id="password" /><br />
-            <span id="passworderror" class="text-danger"></span>
-            <button
-              class="btn btn-success mt-3 w-100"
-              onclick="VerifyPassword()"
-            >
-              Login
-            </button>
-          </div>
-        </div>
-      </div>
+    <section
+      class="container min-vh-100 d-flex justify-content-center align-items-center"
+    >
+      <dl style="display: block" id="number-container">
+        <dt>
+          <h3><b>Sign In</b></h3>
+        </dt>
+        <dt>Enter Email or Number</dt>
+        <dd class="input-group">
+          <button class="btn btn-warning">
+            <span class="bi bi-person-lock"></span>
+          </button>
+          <input type="text" class="form-control" id="number" />
+        </dd>
+        <dd id="numbererror" class="text-danger"></dd>
+        <dt>
+          <button class="btn btn-warning w-100" onclick="VerifyNumber()">
+            Continue
+          </button>
+        </dt>
+      </dl>
+      <!--===== Password login-->
+      <dl style="display: none" id="password-container">
+        <dt>
+          <h3><b>Sign In</b></h3>
+        </dt>
+        <dt>Enter password</dt>
+        <dd class="input-group">
+          <button class="btn btn-success">
+            <span class="bi bi-lock"></span>
+          </button>
+          <input type="text" class="form-control" id="password" />
+        </dd>
+        <dd id="passworderror" class="text-danger"></dd>
+        <dt>
+          <button class="btn btn-success w-100" onclick="VerifyPassword()">
+            Login
+          </button>
+        </dt>
+      </dl>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
