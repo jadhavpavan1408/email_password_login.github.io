@@ -46,9 +46,8 @@
         if ((data.password = password1)) {
           document.querySelector("#password-container").style.display = "none";
           alert("login Successfully");
-          document.write(
-            "Login Success".fontcolor("green").fontsize("10").bold()
-          );
+
+          document.querySelector("#output").style.display = "block";
         } else {
           document.querySelector(
             "#passworderror"
@@ -108,6 +107,9 @@
             Login
           </button>
         </dt>
+      </dl>
+      <dl id="output" style="display: none">
+        <font color="green" face="bold" size="10">Login Successfully</font>
       </dl>
     </section>
     <script
