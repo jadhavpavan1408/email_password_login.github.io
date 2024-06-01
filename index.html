@@ -27,6 +27,7 @@
         number: 7218742423,
         password: "pavan@2024",
       };
+      var error1 = 3;
       function VerifyNumber() {
         var email1 = document.getElementById("number").value;
         if (data.email == email1) {
@@ -36,23 +37,36 @@
           document.querySelector("#number-container").style.display = "none";
           document.querySelector("#password-container").style.display = "block";
         } else {
-          document.querySelector(
-            "#numbererror"
-          ).innerHTML = `enter : ${data.email} or ${data.number}`;
+          error1--;
+          document.getElementById(
+            "numbererror"
+          ).innerHTML = `${error1} attempts left`;
+          if (error1 === 0) {
+            document.querySelector(
+              "#numbererror"
+            ).innerHTML = `enter : ${data.email} or ${data.number}`;
+            document.getElementById("continuebtn").disabled = true;
+          }
         }
       }
+      var error2 = 3;
       function VerifyPassword() {
         var password1 = document.getElementById("password").value;
         if ((data.password = password1)) {
           document.querySelector("#password-container").style.display = "none";
           alert("login Successfully");
-
           document.querySelector("#output").style.display = "block";
         } else {
-          document.querySelector(
-            "#passworderror"
-          ).innerHTML = `enter: pavan@2024`;
-          document.querySelector("#password-container").style.display = "block";
+          error2--;
+          document.getElementById(
+            "passworderror"
+          ).innerHTML = `${error2} attempts left`;
+          if (error2 === 0) {
+            document.querySelector(
+              "#passworderror"
+            ).innerHTML = `enter: pavan@2024`;
+            document.getElementById("loginbtn").disabled = true;
+          }
         }
       }
     </script>
@@ -79,7 +93,11 @@
         </dd>
         <dd id="numbererror" class="text-danger"></dd>
         <dt>
-          <button class="btn btn-warning w-100" onclick="VerifyNumber()">
+          <button
+            class="btn btn-warning w-100"
+            onclick="VerifyNumber()"
+            id="continuebtn"
+          >
             Continue
           </button>
         </dt>
@@ -103,7 +121,11 @@
         </dd>
         <dd id="passworderror" class="text-danger"></dd>
         <dt>
-          <button class="btn btn-success w-100" onclick="VerifyPassword()">
+          <button
+            class="btn btn-success w-100"
+            onclick="VerifyPassword()"
+            id="loginbtn"
+          >
             Login
           </button>
         </dt>
